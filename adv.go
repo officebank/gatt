@@ -93,11 +93,8 @@ func (a *Advertisement) unmarshall(b []byte) error {
 			return errors.New("invalid advertise data")
 		}
 		l, t := b[0], b[1]
-		if len(b) < int(1+l) {
+		if int(l) < 1 || len(b) < int(1+l) {
 			return errors.New("invalid advertise data")
-		}
-		if l <= 2 {
-			return errors.New("invalid advertise data (l<=2)")
 		}
 		d := b[2 : 1+l]
 		switch t {
